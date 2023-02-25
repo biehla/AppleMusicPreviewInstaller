@@ -57,9 +57,10 @@ with open("./temp/AppxManifest.xml", 'r') as f:
 
 print("Modifying app to work on Windows 10")
 
-for line in range(len(manifest)):
+for line, _ in enumerate(manifest):
     if '<TargetDeviceFamily Name="Windows.Desktop"' in manifest[line]:
-        manifest[line] = re.sub(r'MinVersion="10.\d+\.\d+\.\d+"', 'MinVersion="10.0.0.0"', manifest[line])
+        manifest[line] = re.sub(r'MinVersion="10.\d+\.\d+\.\d+"', 
+                                'MinVersion="10.0.0.0"', manifest[line])
 
 with open("./temp/AppxManifest.xml", 'w') as f:
     for line in manifest:
@@ -84,4 +85,4 @@ rmtree("./temp")
 os.remove("./AppleMusic.Msixbundle")
 os.remove("./" + itemName)
 
-pp = input("Finished. Please press enter to exit.")
+input("Finished. Please press enter to exit.")
